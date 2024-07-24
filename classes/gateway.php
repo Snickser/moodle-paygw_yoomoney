@@ -64,11 +64,12 @@ class gateway extends \core_payment\gateway {
 
         $mform->addElement('text', 'token', get_string('token', 'paygw_yoomoney'), ['size' => 50]);
         $mform->setType('token', PARAM_TEXT);
+        $mform->disabledIf('token', null);
 
         $sesskey = sesskey();
         $options = '<a href="/payment/gateway/yoomoney/oauth2callback.php?sesskey=' . $sesskey .
-        '&id=' . $form->get_gateway_persistent()->get('id') . '">' . get_string('authentication') . '</a>';
-        $mform->addElement('static', 'auth', get_string('authentication'), $options);
+        '&id=' . $form->get_gateway_persistent()->get('id') . '">' . get_string('gettoken', 'paygw_yoomoney') . '</a>';
+        $mform->addElement('static', 'auth', null, $options);
 
         $options = [
         1 => 1,

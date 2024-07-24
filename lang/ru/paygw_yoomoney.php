@@ -136,3 +136,6 @@ $string['savedebugdata'] = 'Сохранять debug лог';
 $string['savedebugdata_help'] = 'Данные запросов и ответов банка будут сохраняться в {dataroot}/payment.log';
 
 $string['noreportplugin'] = '<font color=red>Не установлен report_payments плагин, вы не сможете отменить регулярные платежи.</font>';
+
+$string['token'] = 'Токен';
+$string['gettoken'] = 'Запросить или обновить токен';
