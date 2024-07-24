@@ -14,25 +14,25 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-/** Notifications for paygw_yookassa.
+/** Notifications for paygw_yoomoney.
  *
  * @package    paygw_yoomoney
  * @copyright  2024 Alex Orlov <snickser@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-namespace paygw_yookassa;
+namespace paygw_yoomoney;
 
 /** Notifications class.
  *
  * Handle notifications for users about their transactions.
  *
- * @package    paygw_yookassa
+ * @package    paygw_yoomoney
  * @copyright  2024 Alex Orlov <snickser@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class notifications {
     /**
-     * Function that handle the notifications about transactions using yookassa payment gateway
+     * Function that handle the notifications about transactions using yoomoney payment gateway
      * and all kinds of responses.
      *
      * this function sending the message to the user and return the id of the message if needed
@@ -68,29 +68,29 @@ class notifications {
         ];
 
         $message = new \core\message\message();
-        $message->component = 'paygw_yookassa';
+        $message->component = 'paygw_yoomoney';
         $message->name      = 'payment_receipt'; // The notification name from message.php.
         $message->userfrom  = \core_user::get_noreply_user(); // If the message is 'from' a specific user you can set them here.
         $message->userto    = $user;
-        $message->subject   = get_string('messagesubject', 'paygw_yookassa', $type);
+        $message->subject   = get_string('messagesubject', 'paygw_yoomoney', $type);
         switch ($type) {
             case 'Success completed':
-                $messagebody = get_string('message_success_completed', 'paygw_yookassa', $a);
+                $messagebody = get_string('message_success_completed', 'paygw_yoomoney', $a);
                 break;
             case 'Success recurrent':
-                $messagebody = get_string('message_success_recurrent', 'paygw_yookassa', $a);
+                $messagebody = get_string('message_success_recurrent', 'paygw_yoomoney', $a);
                 break;
             case 'Recurrent created':
-                $messagebody = get_string('message_recurrent_created', 'paygw_yookassa', $a);
+                $messagebody = get_string('message_recurrent_created', 'paygw_yoomoney', $a);
                 break;
             case 'Recurrent error':
-                $messagebody = get_string('message_recurrent_error', 'paygw_yookassa', $a);
+                $messagebody = get_string('message_recurrent_error', 'paygw_yoomoney', $a);
                 break;
             case 'Recurrent notify':
-                $messagebody = get_string('message_recurrent_notify', 'paygw_yookassa', $a);
+                $messagebody = get_string('message_recurrent_notify', 'paygw_yoomoney', $a);
                 break;
             case 'Invoice created':
-                $messagebody = get_string('message_invoice_created', 'paygw_yookassa', $a);
+                $messagebody = get_string('message_invoice_created', 'paygw_yoomoney', $a);
                 break;
             default:
                 $messagebody = 'null';
