@@ -50,6 +50,10 @@ class gateway extends \core_payment\gateway {
     public static function add_configuration_to_gateway_form(\core_payment\form\account_gateway $form): void {
         $mform = $form->get_mform();
 
+        $mform->addElement('text', 'wallet', get_string('wallet', 'paygw_yoomoney'), ['size' => 20]);
+        $mform->setType('wallet', PARAM_TEXT);
+        $mform->addRule('wallet', get_string('required'), 'required', null, 'client');
+
         $mform->addElement('text', 'client_id', get_string('client_id', 'paygw_yoomoney'), ['size' => 50]);
         $mform->setType('client_id', PARAM_TEXT);
         $mform->addRule('client_id', get_string('required'), 'required', null, 'client');
@@ -58,9 +62,12 @@ class gateway extends \core_payment\gateway {
         $mform->setType('client_secret', PARAM_TEXT);
         $mform->addRule('client_secret', get_string('required'), 'required', null, 'client');
 
+        $mform->addElement('text', 'token', get_string('token', 'paygw_yoomoney'), ['size' => 50]);
+        $mform->setType('token', PARAM_TEXT);
+
 	$sesskey = sesskey();
         $options = '<a href="/payment/gateway/yoomoney/oauth2.php?sesskey=' . $sesskey .
-        '&id=' . '">' . get_string('authentication') . '</a>';
+        '&id=' . $form->get_gateway_persistent()->get('id') . '">' . get_string('authentication') . '</a>';
         $mform->addElement('static', 'auth', get_string('authentication'), $options);
 
         $options = [

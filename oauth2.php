@@ -38,6 +38,7 @@ require_sesskey();
 
 $id = optional_param('id', 0, PARAM_INT);
 $accountid = optional_param('accountid', 0, PARAM_INT);
+$gatewayname = optional_param('gateway', null, PARAM_COMPONENT);
 
 if ($id) {
     $gateway = new \core_payment\account_gateway($id);
@@ -54,18 +55,26 @@ require_capability('moodle/payment:manageaccounts', $account->get_context());
 
 $config = json_decode($gateway->get('config'));
 
+if($config->maxcost > 0){
+    $maxcost = $config->maxcost;
+} else {
+    $maxcost = 0;
+}
+
 // Get token.
 $location = 'https://yoomoney.ru/oauth/authorize';
 
-$data = "client_id=$config->client_id
-&response_type=code
-&redirect_uri=$CFG->wwwroot/admin/oauth2callback.php
-&scope=payment
-&instance_name=$id";
+$data = "client_id=$config->client_id&response_type=code" .
+"&redirect_uri=" . urlencode($CFG->wwwroot . "/admin/oauth2callback.php") .
+"&scope=payment.to-account(\"$config->wallet\").limit(,$maxcost) money-source(\"wallet\",\"card\")" .
+"&instance_name=$id".
+"&client_secret=$config->client_secret"
+;
 
 $options = [
     'CURLOPT_RETURNTRANSFER' => true,
     'CURLOPT_TIMEOUT' => 30,
+    'CURLOPT_FOLLOWLOCATION' => false,
     'CURLOPT_HTTP_VERSION' => CURL_HTTP_VERSION_1_1,
     'CURLOPT_SSLVERSION' => CURL_SSLVERSION_TLSv1_2,
     'CURLOPT_HTTPHEADER' => [
@@ -75,4 +84,8 @@ $options = [
 $curl = new curl();
 $response = $curl->post($location, $data, $options);
 
-echo serialize($response);
+if(!empty($curl->get_info()['redirect_url'])){
+    redirect($curl->get_info()['redirect_url']) ;
+} else {
+    redirect($curl->get_info()['url']) ;
+}
