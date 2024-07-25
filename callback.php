@@ -39,16 +39,25 @@ file_put_contents($CFG->dataroot . '/payment.log', date("Y-m-d H:i:s") . "\n" .
 serialize($_REQUEST) . "\n\n", FILE_APPEND | LOCK_EX);
 
 
-$invid     = required_param('InvId', PARAM_INT);
-$outsumm   = required_param('OutSum', PARAM_TEXT); // TEXT only!
-$signature = required_param('SignatureValue', PARAM_ALPHANUMEXT);
+$invid     = required_param('label', PARAM_TEXT);
+$amount    = required_param('amount', PARAM_TEXT); // TEXT only!
+$signature = required_param('sha1_hash', PARAM_ALPHANUMEXT);
+
+$opid = required_param('operation_id', PARAM_TEXT);
+$dt   = required_param('datetime', PARAM_TEXT);
+$sdr  = required_param('sender', PARAM_INT);
+
+
+if (empty($invid)) {
+    throw new Error('FAIL. Empty transaction id.');
+}
 
 if (!$yoomoneytx = $DB->get_record('paygw_yoomoney', ['paymentid' => $invid])) {
-    die('FAIL. Not a valid transaction id');
+    throw new Error('FAIL. Not a valid transaction id.');
 }
 
 if (!$payment = $DB->get_record('payments', ['id' => $yoomoneytx->paymentid])) {
-    die('FAIL. Not a valid payment.');
+    throw new Error('FAIL. Not a valid payment.');
 }
 $component   = $payment->component;
 $paymentarea = $payment->paymentarea;
@@ -65,9 +74,18 @@ if ($config->savedebugdata) {
 }
 
 // Check crc.
-$crc = strtoupper(md5("$outsumm:$invid:$mrhpass2"));
+$nt = "p2p-incoming";
+$secret = $config->secret;
+
+$crc = hash('sha1', "$nt&$opid&$amount&643&$dt&$sdr&false&$secret&$invid");
+
+
+file_put_contents($CFG->dataroot . '/payment.log', date("Y-m-d H:i:s") . "\n" .
+serialize("$nt&$opid&$amount&643&$dt&$sdr&false&$secret&$invid") . "\n\n", FILE_APPEND | LOCK_EX);
+
+
 if ($signature !== $crc) {
-    die('FAIL. Signature does not match.');
+    throw new Error('FAIL. Signature does not match.');
 }
 
 // Update payment.
@@ -88,7 +106,7 @@ notifications::notify(
 
 // Update paygw.
 if (!$DB->update_record('paygw_yoomoney', $yoomoneytx)) {
-    die('FAIL. Update db error.');
+    throw new Error('FAIL. Update db error.');
 } else {
     die('OK');
 }
