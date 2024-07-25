@@ -54,62 +54,9 @@ class gateway extends \core_payment\gateway {
         $mform->setType('wallet', PARAM_TEXT);
         $mform->addRule('wallet', get_string('required'), 'required', null, 'client');
 
-        $mform->addElement('text', 'client_id', get_string('client_id', 'paygw_yoomoney'), ['size' => 50]);
-        $mform->setType('client_id', PARAM_TEXT);
-        $mform->addRule('client_id', get_string('required'), 'required', null, 'client');
-
-        $mform->addElement('text', 'client_secret', get_string('client_secret', 'paygw_yoomoney'), ['size' => 50]);
-        $mform->setType('client_secret', PARAM_TEXT);
-        $mform->addRule('client_secret', get_string('required'), 'required', null, 'client');
-
-        $mform->addElement('text', 'token', get_string('token', 'paygw_yoomoney'), ['size' => 50]);
-        $mform->setType('token', PARAM_TEXT);
-        $mform->disabledIf('token', null);
-
-        $sesskey = sesskey();
-        $options = '<a href="/payment/gateway/yoomoney/oauth2callback.php?sesskey=' . $sesskey .
-        '&id=' . $form->get_gateway_persistent()->get('id') . '">' . get_string('gettoken', 'paygw_yoomoney') . '</a>';
-        $mform->addElement('static', 'auth', null, $options);
-
         $options = [
-        1 => 1,
-        2 => 2,
-        3 => 3,
-        4 => 4,
-        5 => 5,
-        6 => 6,
-        ];
-        $mform->addElement(
-            'select',
-            'taxsystemcode',
-            get_string('taxsystemcode', 'paygw_yoomoney'),
-            $options
-        );
-        $mform->setType('taxsystemcode', PARAM_INT);
-        $mform->addHelpButton('taxsystemcode', 'taxsystemcode', 'paygw_yoomoney');
-
-        $options = [
-        1 => get_string('no'),
-        2 => "0%",
-        3 => "10%",
-        4 => "20%",
-        5 => "10/110",
-        6 => "20/120",
-        ];
-        $mform->addElement(
-            'select',
-            'vatcode',
-            get_string('vatcode', 'paygw_yoomoney'),
-            $options,
-        );
-        $mform->setType('vatcode', PARAM_INT);
-        $mform->addHelpButton('vatcode', 'vatcode', 'paygw_yoomoney');
-
-        $options = [
-        '' => get_string('yoomoney', 'paygw_yoomoney'),
-        'bank_card' => get_string('plastic', 'paygw_yoomoney'),
-        'yoo_money' => get_string('wallet', 'paygw_yoomoney'),
-        'sbp' => get_string('sbp', 'paygw_yoomoney'),
+         'AC' => get_string('plastic', 'paygw_yoomoney'),
+         'PC' => get_string('wallet', 'paygw_yoomoney'),
         ];
         $mform->addElement(
             'select',
@@ -119,66 +66,6 @@ class gateway extends \core_payment\gateway {
         );
         $mform->setType('paymentmethod', PARAM_TEXT);
         $mform->addHelpButton('paymentmethod', 'paymentmethod', 'paygw_yoomoney');
-
-        $mform->addElement(
-            'advcheckbox',
-            'recurrent',
-            get_string('recurrent', 'paygw_yoomoney'),
-            get_string('recurrent', 'paygw_yoomoney')
-        );
-        $mform->setType('recurrent', PARAM_INT);
-        $mform->addHelpButton('recurrent', 'recurrent', 'paygw_yoomoney');
-
-        $options = [0 => get_string('no')];
-        for ($i = 1; $i <= 28; $i++) {
-            $options[] = $i;
-        }
-        $mform->addElement(
-            'select',
-            'recurrentday',
-            get_string('recurrentday', 'paygw_yoomoney'),
-            $options,
-        );
-        $mform->addHelpButton('recurrentday', 'recurrentday', 'paygw_yoomoney');
-        $mform->setDefault('recurrentday', 1);
-        $mform->hideIf('recurrentday', 'recurrent', "neq", 1);
-
-        $mform->addElement('duration', 'recurrentperiod', get_string('recurrentperiod', 'paygw_yoomoney'), ['optional' => false]);
-        $mform->setType('recurrentperiod', PARAM_INT);
-        $mform->hideIf('recurrentperiod', 'recurrent', "neq", 1);
-        $mform->hideIf('recurrentperiod', 'recurrentday', "neq", 0);
-        $mform->addHelpButton('recurrentperiod', 'recurrentperiod', 'paygw_yoomoney');
-
-        $options = [
-        'last' => get_string('recurrentcost1', 'paygw_yoomoney'),
-        'fee' => get_string('recurrentcost2', 'paygw_yoomoney'),
-        'suggest' => get_string('recurrentcost3', 'paygw_yoomoney'),
-        ];
-        $mform->addElement(
-            'select',
-            'recurrentcost',
-            get_string('recurrentcost', 'paygw_yoomoney'),
-            $options,
-        );
-        $mform->setType('recurrentcost', PARAM_TEXT);
-        $mform->addHelpButton('recurrentcost', 'recurrentcost', 'paygw_yoomoney');
-        $mform->setDefault('recurrentcost', 'fee');
-        $mform->hideIf('recurrentcost', 'recurrent', "neq", 1);
-
-        $plugininfo = \core_plugin_manager::instance()->get_plugin_info('report_payments');
-        if ($plugininfo->versiondisk < 3024070800) {
-            $mform->addElement('static', 'noreport', null, get_string('noreportplugin', 'paygw_yoomoney'));
-        }
-
-        $mform->addElement(
-            'advcheckbox',
-            'sendlinkmsg',
-            get_string('sendlinkmsg', 'paygw_yoomoney'),
-            get_string('sendlinkmsg', 'paygw_yoomoney')
-        );
-        $mform->setType('sendlinkmsg', PARAM_INT);
-        $mform->addHelpButton('sendlinkmsg', 'sendlinkmsg', 'paygw_yoomoney');
-        $mform->setDefault('sendlinkmsg', 1);
 
         $mform->addElement(
             'advcheckbox',
@@ -283,17 +170,11 @@ class gateway extends \core_payment\gateway {
         array $files,
         array &$errors
     ): void {
-        if ($data->enabled && (empty($data->client_id) || empty($data->client_secret))) {
+        if ($data->enabled && empty($data->wallet)) {
             $errors['enabled'] = get_string('gatewaycannotbeenabled', 'payment');
         }
         if ($data->maxcost && $data->maxcost < $data->suggest) {
             $errors['maxcost'] = get_string('maxcosterror', 'paygw_yoomoney');
-        }
-        if (!$data->suggest && $data->recurrentcost == 'suggest' && $data->recurrent) {
-            $errors['suggest'] = get_string('suggesterror', 'paygw_yoomoney');
-        }
-        if (!$data->recurrentperiod && $data->recurrent && !$data->recurrentday) {
-            $errors['recurrentperiod'] = get_string('recurrentperioderror', 'paygw_yoomoney');
         }
     }
 }

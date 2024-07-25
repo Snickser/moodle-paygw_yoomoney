@@ -110,7 +110,7 @@ if (empty($code)) {
     if (!empty($response->access_token)) {
         $config->token = $response->access_token;
         $gateway->set('config', json_encode($config));
-        $gateway->update();
+//        $gateway->update();
         redirect($CFG->wwwroot . "/payment/manage_gateway.php?id=" . $id);
     } else {
         throw new moodle_exception('tokenerror', 'payment');

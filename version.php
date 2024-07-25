@@ -24,7 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2024072301;
+$plugin->version   = 2024072500;
 $plugin->requires  = 2023100900;
 $plugin->component = 'paygw_yoomoney';
 $plugin->release   = '0.1';

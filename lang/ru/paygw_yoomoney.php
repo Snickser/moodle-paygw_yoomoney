@@ -33,7 +33,7 @@ $string['cost'] = 'Стоимость записи';
 $string['currency'] = 'Валюта';
 $string['fixdesc'] = 'Фиксированный комментарий платежа';
 $string['fixdesc_help'] = 'Эта настройка устанавливает фиксированный комментарий для всех платежей, и отключает отображение описания комментария на странице платежа.';
-$string['gatewaydescription'] = 'ЮMoney — авторизованный платежный шлюз для обработки транзакций по кредитным картам.';
+$string['gatewaydescription'] = 'ЮMoney — ваше личное финансовое пространство.';
 $string['istestmode'] = 'Тестовый режим';
 $string['maxcost'] = 'Максимальная цена';
 $string['password'] = 'Резервный пароль';
@@ -48,7 +48,7 @@ $string['payment_success'] = 'Оплата успешно произведена
 $string['paymentserver'] = 'URL сервера оплаты';
 $string['paymore'] = 'Если вы хотите пожертвовать больше, то просто впишите свою сумму вместо указанной.';
 $string['pluginname'] = 'Платежи ЮMoney';
-$string['pluginname_desc'] = 'Плагин yoomoney позволяет получать платежи через yoomoney.';
+$string['pluginname_desc'] = 'Плагин YooMoney позволяет получать платежи через YooMoney.';
 $string['sendpaymentbutton'] = 'Пожертвовать!';
 $string['client_id'] = 'Идентификатор магазина';
 $string['showduration'] = 'Показывать длительность обучения на странице';
@@ -74,10 +74,8 @@ $string['vatcode_help'] = 'Ставка НДС согласно API докуме
 /* Платежные системы */
 $string['paymentmethod'] = 'Способ оплаты';
 $string['paymentmethod_help'] = 'Устанавливает способ оплаты. Убедитесь, что выбранный метод поддерживается вашим магазином.';
-$string['yoomoney'] = 'ЮMoney (все доступные)';
 $string['wallet'] = 'ЮMoney кошелёк';
-$string['plastic'] = 'VISA, MasterCard, МИР';
-$string['sbp'] = 'СБП (QR-код)';
+$string['plastic'] = 'МИР, Mastercard, Visa, Maestro';
 
 $string['messagesubject'] = 'Уведомление о платеже ({$a})';
 
