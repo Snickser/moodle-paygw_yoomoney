@@ -207,6 +207,15 @@ if (empty($confirmationurl)) {
 // Set the context of the page.
 $PAGE->set_context(context_system::instance());
 
+// Notify user.
+notifications::notify(
+    $userid,
+    $cost,
+    $currency,
+    $confirmationurl,
+    'Invoice created'
+);
+
 // Write to DB.
 $paygwdata->paymentid = $paymentid;
 $DB->update_record('paygw_yoomoney', $paygwdata);
