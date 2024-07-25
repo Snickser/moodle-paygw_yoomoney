@@ -54,6 +54,10 @@ class gateway extends \core_payment\gateway {
         $mform->setType('wallet', PARAM_TEXT);
         $mform->addRule('wallet', get_string('required'), 'required', null, 'client');
 
+        $mform->addElement('text', 'secret', get_string('client_secret', 'paygw_yoomoney'), ['size' => 30]);
+        $mform->setType('secret', PARAM_TEXT);
+        $mform->addRule('secret', get_string('required'), 'required', null, 'client');
+
         $options = [
          'AC' => get_string('plastic', 'paygw_yoomoney'),
          'PC' => get_string('wallet', 'paygw_yoomoney'),
