@@ -79,11 +79,6 @@ $secret = $config->secret;
 
 $crc = hash('sha1', "$nt&$opid&$amount&643&$dt&$sdr&false&$secret&$invid");
 
-
-file_put_contents($CFG->dataroot . '/payment.log', date("Y-m-d H:i:s") . "\n" .
-serialize("$nt&$opid&$amount&643&$dt&$sdr&false&$secret&$invid") . "\n\n", FILE_APPEND | LOCK_EX);
-
-
 if ($signature !== $crc) {
     throw new Error('FAIL. Signature does not match.');
 }
