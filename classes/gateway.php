@@ -54,9 +54,26 @@ class gateway extends \core_payment\gateway {
         $mform->setType('wallet', PARAM_TEXT);
         $mform->addRule('wallet', get_string('required'), 'required', null, 'client');
 
-        $mform->addElement('text', 'secret', get_string('notify_secret', 'paygw_yoomoney'), ['size' => 30]);
-        $mform->setType('secret', PARAM_TEXT);
-        $mform->addRule('secret', get_string('required'), 'required', null, 'client');
+        $mform->addElement('text', 'notify_secret', get_string('notify_secret', 'paygw_yoomoney'), ['size' => 30]);
+        $mform->setType('notify_secret', PARAM_TEXT);
+        $mform->addRule('notify_secret', get_string('required'), 'required', null, 'client');
+
+        $mform->addElement('text', 'client_id', get_string('client_id', 'paygw_yoomoney'), ['size' => 50]);
+        $mform->setType('client_id', PARAM_TEXT);
+        $mform->addRule('client_id', get_string('required'), 'required', null, 'client');
+
+        $mform->addElement('text', 'client_secret', get_string('client_secret', 'paygw_yoomoney'), ['size' => 50]);
+        $mform->setType('client_secret', PARAM_TEXT);
+        $mform->addRule('client_secret', get_string('required'), 'required', null, 'client');
+
+        $mform->addElement('text', 'token', get_string('token', 'paygw_yoomoney'), ['size' => 50]);
+        $mform->setType('token', PARAM_TEXT);
+        $mform->disabledIf('token', null);
+
+        $sesskey = sesskey();
+        $options = '<a href="/payment/gateway/yoomoney/oauth2callback.php?sesskey=' . $sesskey .
+        '&id=' . $form->get_gateway_persistent()->get('id') . '">' . get_string('gettoken', 'paygw_yoomoney') . '</a>';
+        $mform->addElement('static', 'auth', null, $options);
 
         $options = [
          'AC' => get_string('plastic', 'paygw_yoomoney'),

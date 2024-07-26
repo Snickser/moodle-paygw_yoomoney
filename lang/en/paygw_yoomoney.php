@@ -26,6 +26,7 @@ $string['callback_help'] = 'Copy this line and paste it into "HTTP notifications
 $string['callback_url'] = 'Notification URL:';
 $string['client_id'] = 'Client ID';
 $string['notify_secret'] = 'Notify secret';
+$string['client_secret'] = 'OAuth2 client_secret';
 $string['fixdesc'] = 'Fixed payment comment';
 $string['fixdesc_help'] = 'This setting sets a fixed comment for all payments.';
 $string['gatewaydescription'] = 'YooMoney is an authorised payment gateway provider for processing credit card transactions.';
