@@ -68,7 +68,7 @@ class gateway extends \core_payment\gateway {
 
         $mform->addElement('text', 'token', get_string('token', 'paygw_yoomoney'), ['size' => 50]);
         $mform->setType('token', PARAM_TEXT);
-        $mform->disabledIf('token', null);
+        $mform->disabledIf('token', 'wallet');
 
         $sesskey = sesskey();
         $options = '<a href="/payment/gateway/yoomoney/oauth2callback.php?sesskey=' . $sesskey .
