@@ -34,9 +34,6 @@ defined('MOODLE_INTERNAL') || die();
 // Set the context of the page.
 $PAGE->set_context(context_system::instance());
 
-file_put_contents($CFG->dataroot . '/payment.log', date("Y-m-d H:i:s") . "\n" .
-serialize($_REQUEST) . "\n\n", FILE_APPEND | LOCK_EX);
-
 $invid     = required_param('label', PARAM_TEXT); // TEXT only!
 $amount    = required_param('amount', PARAM_TEXT); // TEXT only!
 $signature = required_param('sha1_hash', PARAM_ALPHANUMEXT);
