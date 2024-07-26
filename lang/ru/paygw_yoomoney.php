@@ -26,7 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['abouttopay'] = 'Вы собираетесь пожертвовать на';
-$string['callback_help'] = 'Скопируйте эту строку и вставьте в "HTTP-уведомления" в настройках магазина в ЮMoney, и включите там уведомления "payment.succeeded" и "payment.canceled".';
+$string['callback_help'] = 'Скопируйте эту строку и вставьте в "HTTP-уведомления" в настройках магазина в ЮMoney, и включите там уведомления.';
 $string['callback_url'] = 'URL для уведомлений:';
 $string['client_id'] = 'Идентификатор магазина';
 $string['notify_secret'] = 'Notify secret';
