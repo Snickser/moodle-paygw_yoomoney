@@ -163,7 +163,7 @@ $data = "receiver=$config->wallet" .
 "&quickpay-form=button" .
 "&paymentType=$config->paymentmethod" .
 "&sum=$cost" .
-"&label=" . urlencode($description) .
+"&label=" . $paymentid .
 "&successURL=" . urlencode($url);
 
 // Make payment.
