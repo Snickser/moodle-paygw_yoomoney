@@ -43,10 +43,10 @@ $invid     = required_param('label', PARAM_TEXT);
 $amount    = required_param('amount', PARAM_TEXT); // TEXT only!
 $signature = required_param('sha1_hash', PARAM_ALPHANUMEXT);
 
+$nt   = required_param('notification_type', PARAM_TEXT);
 $opid = required_param('operation_id', PARAM_TEXT);
 $dt   = required_param('datetime', PARAM_TEXT);
 $sdr  = required_param('sender', PARAM_INT);
-
 
 if (empty($invid)) {
     throw new Error('FAIL. Empty transaction id.');
@@ -74,7 +74,6 @@ if ($config->savedebugdata) {
 }
 
 // Check crc.
-$nt = "p2p-incoming";
 $secret = $config->secret;
 
 $crc = hash('sha1', "$nt&$opid&$amount&643&$dt&$sdr&false&$secret&$invid");
