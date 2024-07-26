@@ -37,7 +37,6 @@ $userid = $USER->id;
 $component   = required_param('component', PARAM_COMPONENT);
 $paymentarea = required_param('paymentarea', PARAM_AREA);
 $itemid      = required_param('itemid', PARAM_INT);
-$description = required_param('description', PARAM_TEXT);
 
 $password    = optional_param('password', null, PARAM_TEXT);
 $skipmode    = optional_param('skipmode', 0, PARAM_INT);
@@ -206,15 +205,6 @@ if (empty($confirmationurl)) {
 
 // Set the context of the page.
 $PAGE->set_context(context_system::instance());
-
-// Notify user.
-notifications::notify(
-    $userid,
-    $cost,
-    $currency,
-    $confirmationurl,
-    'Invoice created'
-);
 
 // Write to DB.
 $paygwdata->paymentid = $paymentid;

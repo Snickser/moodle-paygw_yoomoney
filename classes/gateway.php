@@ -54,7 +54,7 @@ class gateway extends \core_payment\gateway {
         $mform->setType('wallet', PARAM_TEXT);
         $mform->addRule('wallet', get_string('required'), 'required', null, 'client');
 
-        $mform->addElement('text', 'secret', get_string('client_secret', 'paygw_yoomoney'), ['size' => 30]);
+        $mform->addElement('text', 'secret', get_string('notify_secret', 'paygw_yoomoney'), ['size' => 30]);
         $mform->setType('secret', PARAM_TEXT);
         $mform->addRule('secret', get_string('required'), 'required', null, 'client');
 
@@ -80,11 +80,6 @@ class gateway extends \core_payment\gateway {
 
         $mform->setType('savedebugdata', PARAM_INT);
         $mform->addHelpButton('savedebugdata', 'savedebugdata', 'paygw_yoomoney');
-
-        $mform->addElement('text', 'fixdesc', get_string('fixdesc', 'paygw_yoomoney'), ['size' => 50]);
-        $mform->setType('fixdesc', PARAM_TEXT);
-        $mform->addRule('fixdesc', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
-        $mform->addHelpButton('fixdesc', 'fixdesc', 'paygw_yoomoney');
 
         $mform->addElement('static');
 

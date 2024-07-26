@@ -34,19 +34,17 @@ defined('MOODLE_INTERNAL') || die();
 // Set the context of the page.
 $PAGE->set_context(context_system::instance());
 
-
 file_put_contents($CFG->dataroot . '/payment.log', date("Y-m-d H:i:s") . "\n" .
 serialize($_REQUEST) . "\n\n", FILE_APPEND | LOCK_EX);
 
-
-$invid     = required_param('label', PARAM_TEXT);
+$invid     = required_param('label', PARAM_TEXT); // TEXT only!
 $amount    = required_param('amount', PARAM_TEXT); // TEXT only!
 $signature = required_param('sha1_hash', PARAM_ALPHANUMEXT);
 
 $nt   = required_param('notification_type', PARAM_TEXT);
 $opid = required_param('operation_id', PARAM_TEXT);
 $dt   = required_param('datetime', PARAM_TEXT);
-$sdr  = required_param('sender', PARAM_INT);
+$sdr  = required_param('sender', PARAM_TEXT);
 
 if (empty($invid)) {
     throw new Error('FAIL. Empty transaction id.');
@@ -99,6 +97,7 @@ notifications::notify(
 );
 
 // Update paygw.
+$yoomoneytx->success = 1;
 if (!$DB->update_record('paygw_yoomoney', $yoomoneytx)) {
     throw new Error('FAIL. Update db error.');
 } else {

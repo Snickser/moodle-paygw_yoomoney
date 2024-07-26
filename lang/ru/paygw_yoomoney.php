@@ -26,9 +26,10 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['abouttopay'] = 'Вы собираетесь пожертвовать на';
-$string['client_secret'] = 'Client secret';
-$string['callback_help'] = 'Скопируйте эту строку и вставьте в "HTTP-уведомления" в настройках ЮMoney, и включите там уведомления.';
+$string['callback_help'] = 'Скопируйте эту строку и вставьте в "HTTP-уведомления" в настройках магазина в ЮMoney, и включите там уведомления "payment.succeeded" и "payment.canceled".';
 $string['callback_url'] = 'URL для уведомлений:';
+$string['client_id'] = 'Идентификатор магазина';
+$string['notify_secret'] = 'Notify secret';
 $string['cost'] = 'Стоимость записи';
 $string['currency'] = 'Валюта';
 $string['fixdesc'] = 'Фиксированный комментарий платежа';
@@ -50,7 +51,6 @@ $string['paymore'] = 'Если вы хотите пожертвовать бол
 $string['pluginname'] = 'Платежи ЮMoney';
 $string['pluginname_desc'] = 'Плагин YooMoney позволяет получать платежи через YooMoney.';
 $string['sendpaymentbutton'] = 'Пожертвовать!';
-$string['client_id'] = 'Идентификатор магазина';
 $string['showduration'] = 'Показывать длительность обучения на странице';
 $string['skipmode'] = 'Показать кнопку обхода платежа';
 $string['skipmode_help'] = 'Эта настройка разрешает кнопку обхода платежа, может быть полезна в публичных курсах с необязательной оплатой.';

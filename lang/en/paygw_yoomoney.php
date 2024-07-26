@@ -22,9 +22,10 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 $string['abouttopay'] = 'You are about to pay for';
-$string['client_secret'] = 'Client secret';
 $string['callback_help'] = 'Copy this line and paste it into "HTTP notifications" in the yoomoney store settings, and enable "payment.succeeded" and "payment.canceled" notifications there.';
 $string['callback_url'] = 'Notification URL:';
+$string['client_id'] = 'Client ID';
+$string['notify_secret'] = 'Notify secret';
 $string['fixdesc'] = 'Fixed payment comment';
 $string['fixdesc_help'] = 'This setting sets a fixed comment for all payments.';
 $string['gatewaydescription'] = 'YooMoney is an authorised payment gateway provider for processing credit card transactions.';
@@ -45,7 +46,6 @@ $string['paymore'] = 'If you want to donate more, simply enter your amount inste
 $string['pluginname'] = 'yoomoney payment';
 $string['pluginname_desc'] = 'The yoomoney plugin allows you to receive payments via yoomoney.';
 $string['sendpaymentbutton'] = 'Send payment via yoomoney!';
-$string['client_id'] = 'Client ID';
 $string['showduration'] = 'Show duration of training';
 $string['skipmode'] = 'Can skip payment';
 $string['skipmode_help'] = 'This setting allows a payment bypass button, which can be useful in public courses with optional payment.';
