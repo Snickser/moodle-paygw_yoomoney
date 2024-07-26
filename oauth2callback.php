@@ -62,7 +62,8 @@ if (empty($code)) {
 
     $data = "client_id=$config->client_id&response_type=code" .
      "&redirect_uri=" . urlencode($CFG->wwwroot . "/payment/gateway/yoomoney/oauth2callback.php?id=$id&sesskey=" . sesskey()) .
-     "&scope=payment.to-account(\"$config->wallet\").limit(,$maxcost) money-source(\"wallet\",\"card\")" .
+//     "&scope=payment.to-account(\"$config->wallet\").limit(,$maxcost) money-source(\"wallet\",\"card\")" .
+     "&scope=operation-details" .
      "&instance_name=$id" .
      "&client_secret=$config->client_secret";
 
