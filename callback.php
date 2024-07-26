@@ -72,7 +72,7 @@ if ($config->savedebugdata) {
 }
 
 // Check crc.
-$secret = $config->secret;
+$secret = $config->notify_secret;
 
 $crc = hash('sha1', "$nt&$opid&$amount&643&$dt&$sdr&false&$secret&$invid");
 
