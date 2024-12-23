@@ -26,9 +26,12 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['abouttopay'] = 'Вы собираетесь пожертвовать на';
-$string['callback_help'] = 'Скопируйте эту строку и вставьте в "HTTP-уведомления" в настройках магазина в ЮMoney, и включите там уведомления.';
+$string['callback_help'] = 'Скопируйте эту строку и вставьте в "<a target=_blank href="https://yoomoney.ru/transfer/myservices/http-notification">HTTP-уведомления</a>" 
+в настройках ЮMoney, и включите там уведомления.';
 $string['callback_url'] = 'URL для уведомлений:';
-$string['client_id'] = 'Идентификатор приложения ';
+$string['redirect_uri'] = '<a target=_blank href="https://yoomoney.ru/docs/wallet/using-api/authorization/register-client">Инструкция по настройке</a><br>
+Redirect URI и Notification URI:';
+$string['client_id'] = 'client_id';
 $string['client_secret'] = 'OAuth2 client_secret';
 $string['cost'] = 'Стоимость записи';
 $string['currency'] = 'Валюта';

@@ -22,9 +22,11 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 $string['abouttopay'] = 'You are about to pay for';
-$string['callback_help'] = 'Copy this line and paste it into "HTTP notifications" in the yoomoney store settings, and enable notifications there.';
+$string['callback_help'] = 'Copy this line and paste it into "<a target=_blank href="https://yoomoney.ru/transfer/myservices/http-notification">HTTP notifications</a>" in the YooMoney settings, and enable notifications there.';
 $string['callback_url'] = 'Notification URL:';
-$string['client_id'] = 'Client ID';
+$string['redirect_uri'] = '<a target=_blank href="https://yoomoney.ru/docs/wallet/using-api/authorization/register-client">Setup instructions</a><br>
+Redirect URI and Notification URI:';
+$string['client_id'] = 'client_id';
 $string['client_secret'] = 'OAuth2 client_secret';
 $string['fixdesc'] = 'Fixed payment comment';
 $string['fixdesc_help'] = 'This setting sets a fixed comment for all payments.';

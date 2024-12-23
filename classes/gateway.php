@@ -149,8 +149,10 @@ class gateway extends \core_payment\gateway {
         $mform->disabledIf('maxcost', 'fixcost', "neq", 0);
 
         global $CFG;
-        $mform->addElement('html', '<div class="label-callback" style="background: pink; padding: 15px;">' .
-                                    get_string('callback_url', 'paygw_yoomoney') . '<br>');
+        $mform->addElement('html', '<div class="label-callback" style="background: pink; padding: 15px;">');
+        $mform->addElement('html', get_string('redirect_uri', 'paygw_yoomoney') . '<br>');
+        $mform->addElement('html', $CFG->wwwroot . '/payment/gateway/yoomoney/oauth2callback.php<br>');
+        $mform->addElement('html', get_string('callback_url', 'paygw_yoomoney') . '<br>');
         $mform->addElement('html', $CFG->wwwroot . '/payment/gateway/yoomoney/callback.php<br>');
         $mform->addElement('html', get_string('callback_help', 'paygw_yoomoney') . '</div><br>');
 
