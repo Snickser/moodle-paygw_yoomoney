@@ -60,7 +60,7 @@ class provider implements \core_privacy\local\request\data_provider, paygw_provi
             'paygw_yoomoney',
             [
                 'invoiceid'  => 'privacy:metadata:paygw_yoomoney:invoiceid',
-                'courceid'   => 'privacy:metadata:paygw_yoomoney:courceid',
+                'courseid'   => 'privacy:metadata:paygw_yoomoney:courseid',
                 'groupnames' => 'privacy:metadata:paygw_yoomoney:groupnames',
                 'success'    => 'privacy:metadata:paygw_yoomoney:success',
             ],

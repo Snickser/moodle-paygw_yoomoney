@@ -67,7 +67,6 @@ $string['usedetails_text'] = 'Click here if you are unable to donate.';
 $string['vatcode'] = 'VAT rate';
 $string['vatcode_help'] = 'VAT rate according to YooMoney documentation.';
 
-/* Payment systems */
 $string['paymentmethod'] = 'Payment method';
 $string['paymentmethod_help'] = 'Sets the payment method. Make sure the method you choose is supported by your store.';
 $string['yoomoney'] = 'yoomoney (all methods)';
@@ -82,7 +81,7 @@ $string['privacy:metadata:paygw_yoomoney:apikey'] = 'ApiKey';
 $string['privacy:metadata:paygw_yoomoney:email'] = 'Email';
 $string['privacy:metadata:paygw_yoomoney:yoomoney_plus'] = 'Send json data';
 $string['privacy:metadata:paygw_yoomoney:invoiceid'] = 'Invoice id';
-$string['privacy:metadata:paygw_yoomoney:courceid'] = 'Cource id';
+$string['privacy:metadata:paygw_yoomoney:courseid'] = 'Course id';
 $string['privacy:metadata:paygw_yoomoney:groupnames'] = 'Group names';
 $string['privacy:metadata:paygw_yoomoney:success'] = 'Status';
 
@@ -147,3 +146,14 @@ $string['noreportplugin'] = '<font color=red>The report_payments plugin is not i
 
 $string['token'] = 'Token';
 $string['gettoken'] = 'Get or update Token';
+
+$string['donate'] = '<div>Plugin version: {$a->release} ({$a->versiondisk})<br>
+You can find new versions of the plugin at <a href=https://github.com/Snickser/moodle-paygw_yoomoney>GitHub.com</a>
+<img src="https://img.shields.io/github/v/release/Snickser/moodle-paygw_yoomoney.svg"><br>
+Please send me some <a href="https://yoomoney.ru/fundraise/143H2JO3LLE.240720">donate</a>😊</div>
+<iframe src="https://yoomoney.ru/quickpay/fundraise/button?billNumber=143H2JO3LLE.240720"
+width="330" height="50" frameborder="0" allowtransparency="true" scrolling="no"></iframe>';
+
+$string['error_txdatabase'] = 'Error write TX data to database';
+$string['error_notvalidtxid'] = 'FAIL. Not a valid transaction id';
+$string['error_notvalidpayment'] = 'FAIL. Not a valid payment';

@@ -88,16 +88,6 @@ class gateway extends \core_payment\gateway {
         $mform->setType('paymentmethod', PARAM_TEXT);
         $mform->addHelpButton('paymentmethod', 'paymentmethod', 'paygw_yoomoney');
 
-        $mform->addElement(
-            'advcheckbox',
-            'savedebugdata',
-            get_string('savedebugdata', 'paygw_yoomoney'),
-            get_string('savedebugdata', 'paygw_yoomoney')
-        );
-
-        $mform->setType('savedebugdata', PARAM_INT);
-        $mform->addHelpButton('savedebugdata', 'savedebugdata', 'paygw_yoomoney');
-
         $mform->addElement('static');
 
         $mform->addElement(
@@ -164,12 +154,9 @@ class gateway extends \core_payment\gateway {
         $mform->addElement('html', $CFG->wwwroot . '/payment/gateway/yoomoney/callback.php<br>');
         $mform->addElement('html', get_string('callback_help', 'paygw_yoomoney') . '</div><br>');
 
-        $header = '<div>Новые версии плагина вы можете найти на
- <a href=https://github.com/Snickser/moodle-paygw_yoomoney>GitHub.com</a><br>
- Пожалуйста, отправьте мне немножко <a href="https://yoomoney.ru/fundraise/143H2JO3LLE.240720">доната</a>😊</div>
- <iframe src="https://yoomoney.ru/quickpay/fundraise/button?billNumber=143H2JO3LLE.240720"
- width="330" height="50" frameborder="0" allowtransparency="true" scrolling="no"></iframe>';
-        $mform->addElement('html', $header);
+        $plugininfo = \core_plugin_manager::instance()->get_plugin_info('paygw_yoomoney');
+        $donate = get_string('donate', 'paygw_yoomoney', $plugininfo);
+        $mform->addElement('html', $donate);
     }
 
     /**
