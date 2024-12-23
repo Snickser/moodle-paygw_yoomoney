@@ -50,7 +50,7 @@ $surcharge = helper::get_gateway_surcharge('yoomoney');// In case user uses surc
 $cost = helper::get_rounded_cost($payable->get_amount(), $payable->get_currency(), $surcharge);
 
 // Check self cost.
-if (!empty($costself)) {
+if (!empty($costself) && !$config->fixcost) {
     $cost = $costself;
 }
 
