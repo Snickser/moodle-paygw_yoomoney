@@ -95,11 +95,6 @@ $curl = new curl();
 $jsonresponse = $curl->post($location, $data, $options);
 $response = json_decode($jsonresponse);
 
-if ($config->savedebugdata) {
-    file_put_contents($CFG->dataroot . '/payment.log', date("Y-m-d H:i:s") . "\n" .
-    serialize($response) . "\n\n", FILE_APPEND | LOCK_EX);
-}
-
 if ($response->status !== "success") {
     throw new Error('FAIL. Payment status error.');
 }

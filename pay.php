@@ -180,11 +180,6 @@ $options = [
 $curl = new curl();
 $response = $curl->post($location, $data, $options);
 
-if ($config->savedebugdata) {
-    file_put_contents($CFG->dataroot . '/payment.log', date("Y-m-d H:i:s") . "\n" .
-    serialize($response) . "\n\n", FILE_APPEND | LOCK_EX);
-}
-
 if (empty($response)) {
     $DB->delete_records('paygw_yoomoney', ['id' => $transactionid]);
     $error = $response->description;
