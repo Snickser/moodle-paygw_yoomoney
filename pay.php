@@ -95,7 +95,7 @@ $paygwdata->courseid = $courseid;
 $paygwdata->groupnames = $groupnames;
 $paygwdata->timecreated = time();
 if (!$transactionid = $DB->insert_record('paygw_yoomoney', $paygwdata)) {
-    throw new Error(get_string('error_txdatabase', 'paygw_yoomoney'));
+    throw new \moodle_exception(get_string('error_txdatabase', 'paygw_yoomoney'));
 }
 $paygwdata->id = $transactionid;
 
@@ -183,7 +183,7 @@ $response = $curl->post($location, $data, $options);
 if (empty($response)) {
     $DB->delete_records('paygw_yoomoney', ['id' => $transactionid]);
     $error = $response->description;
-    throw new Error(get_string('payment_error', 'paygw_yoomoney') . " ($error)");
+    throw new \moodle_exception(get_string('payment_error', 'paygw_yoomoney') . " ($error)");
 }
 
 if (!empty($curl->get_info()['redirect_url'])) {
@@ -195,7 +195,7 @@ if (!empty($curl->get_info()['redirect_url'])) {
 if (empty($confirmationurl)) {
     $DB->delete_records('paygw_yoomoney', ['id' => $transactionid]);
     $error = $response->description;
-    throw new Error(get_string('payment_error', 'paygw_yoomoney') . " ($error)");
+    throw new \moodle_exception(get_string('payment_error', 'paygw_yoomoney') . " ($error)");
 }
 
 // Set the context of the page.
