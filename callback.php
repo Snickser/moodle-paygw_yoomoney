@@ -46,19 +46,19 @@ $dt   = required_param('datetime', PARAM_TEXT);
 $sdr  = required_param('sender', PARAM_TEXT);
 
 if (empty($invid)) {
-    throw new Error('FAIL. Empty transaction id.');
+    throw new \moodle_exception('FAIL. Empty transaction id.');
 }
 
 if ($unaccepted == 'true') {
-    throw new Error('FAIL. Unaccepted payment.');
+    throw new \moodle_exception('FAIL. Unaccepted payment.');
 }
 
 if (!$yoomoneytx = $DB->get_record('paygw_yoomoney', ['paymentid' => $invid])) {
-    throw new Error('FAIL. Not a valid transaction id.');
+    throw new \moodle_exception('FAIL. Not a valid transaction id.');
 }
 
 if (!$payment = $DB->get_record('payments', ['id' => $yoomoneytx->paymentid])) {
-    throw new Error('FAIL. Not a valid payment.');
+    throw new \moodle_exception('FAIL. Not a valid payment.');
 }
 $component   = $payment->component;
 $paymentarea = $payment->paymentarea;
@@ -75,7 +75,7 @@ $secret = $config->notify_secret;
 $crc = hash('sha1', "$nt&$opid&$amount&643&$dt&$sdr&false&$secret&$invid");
 
 if ($signature !== $crc) {
-    throw new Error('FAIL. Signature does not match.');
+    throw new \moodle_exception('FAIL. Signature does not match.');
 }
 
 $data = "operation_id=$opid";
@@ -96,7 +96,7 @@ $jsonresponse = $curl->post($location, $data, $options);
 $response = json_decode($jsonresponse);
 
 if ($response->status !== "success") {
-    throw new Error('FAIL. Payment status error.');
+    throw new \moodle_exception('FAIL. Payment status error.');
 }
 
 // Update payment.
@@ -118,7 +118,7 @@ notifications::notify(
 // Update paygw.
 $yoomoneytx->success = 1;
 if (!$DB->update_record('paygw_yoomoney', $yoomoneytx)) {
-    throw new Error('FAIL. Update db error.');
+    throw new \moodle_exception('FAIL. Update db error.');
 } else {
     die('OK');
 }
