@@ -26,9 +26,7 @@
 use core_payment\helper;
 
 require_once(__DIR__ . '/../../../config.php');
-
 require_once($CFG->libdir . '/filelib.php');
-
 global $CFG, $DB;
 
 defined('MOODLE_INTERNAL') || die();
@@ -44,7 +42,7 @@ if ($id) {
     $account = new \core_payment\account($gateway->get('accountid'));
 }
 if (empty($account) || empty($gateway)) {
-    throw new moodle_exception('gatewaynotfound', 'payment');
+    throw new \moodle_exception('gatewaynotfound', 'payment');
 }
 require_capability('moodle/payment:manageaccounts', $account->get_context());
 
@@ -62,7 +60,6 @@ if (empty($code)) {
 
     $data = "client_id=$config->client_id&response_type=code" .
      "&redirect_uri=" . urlencode($CFG->wwwroot . "/payment/gateway/yoomoney/oauth2callback.php?id=$id&sesskey=" . sesskey()) .
-/* "&scope=payment.to-account(\"$config->wallet\").limit(,$maxcost) money-source(\"wallet\",\"card\")" . */
      "&scope=operation-details" .
      "&instance_name=$id" .
      "&client_secret=$config->client_secret";
@@ -90,7 +87,8 @@ if (empty($code)) {
     $location = 'https://yoomoney.ru/oauth/token';
 
     $data = "code=$code&client_id=$config->client_id&grant_type=authorization_code" .
-     "&redirect_uri=" . urlencode($CFG->wwwroot . "/payment/gateway/yoomoney/oauth2callback.php?id=$id&sesskey=" . sesskey()) .
+     "&redirect_uri=" . urlencode($CFG->wwwroot .
+     "/payment/gateway/yoomoney/oauth2callback.php?id=$id&sesskey=" . sesskey()) .
      "&client_secret=$config->client_secret";
 
     $options = [
@@ -114,6 +112,6 @@ if (empty($code)) {
         $gateway->update();
         redirect($CFG->wwwroot . "/payment/manage_gateway.php?id=" . $id);
     } else {
-        throw new moodle_exception('tokenerror', 'payment');
+        throw new \moodle_exception('tokenerror', 'payment');
     }
 }
