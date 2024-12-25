@@ -157,7 +157,7 @@ $paymentid = helper::save_payment(
     'yoomoney'
 );
 
-$return_url = $CFG->wwwroot . '/payment/gateway/yoomoney/return.php?ID=' . $paymentid;
+$returnurl = $CFG->wwwroot . '/payment/gateway/yoomoney/return.php?ID=' . $paymentid;
 
 // Make invoice.
 $data = "receiver=$config->wallet" .
@@ -165,7 +165,7 @@ $data = "receiver=$config->wallet" .
 "&paymentType=$config->paymentmethod" .
 "&sum=$cost" .
 "&label=" . $paymentid .
-"&successURL=" . urlencode($return_url);
+"&successURL=" . urlencode($returnurl);
 
 // Make payment.
 $location = 'https://yoomoney.ru/quickpay/confirm';
