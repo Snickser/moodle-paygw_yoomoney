@@ -4,6 +4,7 @@
 [![Build Status](https://github.com/Snickser/moodle-paygw_yoomoney/actions/workflows/moodle-ci.yml/badge.svg)](https://github.com/Snickser/moodle-paygw_yoomoney/actions/workflows/moodle-ci.yml)
 
 ![alt text](https://raw.githubusercontent.com/Snickser/moodle-paygw_yoomoney/9bd676f4bf1c275eac91f7bd35f26d9092a842fa/pix/img.svg)
+
 https://yoomoney.ru
 
 ## Возможности
