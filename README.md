@@ -3,8 +3,7 @@
 [![](https://img.shields.io/github/v/release/Snickser/moodle-paygw_yoomoney.svg)](https://github.com/Snickser/moodle-paygw_yoomoney/releases)
 [![Build Status](https://github.com/Snickser/moodle-paygw_yoomoney/actions/workflows/moodle-ci.yml/badge.svg)](https://github.com/Snickser/moodle-paygw_yoomoney/actions/workflows/moodle-ci.yml)
 
-![alt text](https://raw.githubusercontent.com/Snickser/moodle-paygw_yoomoney/809333a08256b99ff3a7143ce2fbc0ee9fba6b24/pix/img.svg)
-
+![alt text](https://raw.githubusercontent.com/Snickser/moodle-paygw_yoomoney/9bd676f4bf1c275eac91f7bd35f26d9092a842fa/pix/img.svg)
 https://yoomoney.ru
 
 ## Возможности
